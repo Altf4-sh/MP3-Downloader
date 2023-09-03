@@ -1,6 +1,6 @@
 from pytube import YouTube
 import os
-print('MP4 Audio Downloader \n')
+print('MP3 Audio Downloader \n')
 
 rate = int(input('Cuantas canciones vas a descargar (max 20) >>> '))
 
