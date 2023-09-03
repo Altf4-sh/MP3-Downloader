@@ -1,5 +1,5 @@
 from pytube import YouTube
-
+import os
 print('MP4 Audio Downloader \n')
 
 rate = int(input('Cuantas canciones vas a descargar (max 20) >>> '))
@@ -13,16 +13,18 @@ else:
         # Crea una instancia del objeto YouTube
         video = YouTube(URLs)
         
+        # Obtener el título del video
+        video_title = video.title
+        
         # Selecciona la mejor calidad de audio disponible
         audio_stream = video.streams.filter(only_audio=True, file_extension='mp4').first()
-
-        song = input('Nombre de la cacion >>> ')
         
-        # Descarga el audio en formato mp4
-        audio_stream.download(output_path='MisCanciones', filename=song)
+        # Descargar el audio
+        audio_stream.download(output_path='MisCanciones')
 
-        # Renombra el archivo descargado a formato mp4
-        import os
-        os.rename('MisCanciones/'+song, 'MisCanciones/'+song+'.mp4')
+        # Renombrar el archivo descargado con el título del video
+        downloaded_file = audio_stream.default_filename
+        new_file_path = os.path.join('MisCanciones', f'{video_title}.mp3')
+        os.rename(os.path.join('MisCanciones', downloaded_file), new_file_path)
 
         print('Descarga completada!')
