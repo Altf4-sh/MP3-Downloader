@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import customtkinter
 import webbrowser
-import _bootlocale
 from pytube import YouTube
 from PIL import Image
 import os
